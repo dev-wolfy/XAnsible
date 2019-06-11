@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
+<html>
+<head>
+    <meta name="qrichtext" content="1" />
+    <style type="text/css">
+        body { font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal; }
+        p, li { white-space: pre-wrap; }
+        .bold {font-weight: bold;}
+        .span1 { color: #1b5e20; }
+        .span2 { color: #388e3c; }
+        .span3 { color: #4caf50; }
+        .span4 { color: #66bb6a; }
+        .link  { color: #e65100; text-decoration: none; }
+        .defaut { color: #304ffe; }
+        table { background-color: black; }
+        td { background-color: white; color: black; }
+        pre { background-color: #546e7a; color: white; margin: 5px; padding: 20px; -qt-block-indent:0; text-indent:0px; }
+    </style>
+</head>
+<body>
+    <h3><a href="https://docs.ansible.com/ansible/latest/modules/command_module.html#command-module"><span class="span1 bold">Command</span></a> - Exécuter une commande sur la cible</h3>
+    <br>
+    <h4>Caractéristiques</h4>
+    <ul>
+        <li>Prend le nom de la commande suivi d'une liste de paramètre délimités par des espaces.</li>
+        <li>Commande non exécuté via un shell, donc pas de $HOME ou d'opération tel que '&lt;', '&gt;', '|', ';' et '&amp;'</li>
+        <li>Pour plus de lisibilité, passer par 'args'</li>
+        <li>Pour windows: module <a href="https://docs.ansible.com/ansible/latest/modules/win_command_module.html#win-command-module">win_command</a></li>
+    </ul>
+    <br>
+    <h3>Paramètre</h3>
+    <table>
+        <tr>
+            <td>argv<br>list</td>
+            <td></td>
+            <td>Transmet la commande sous forme de liste plutôt que de chaîne. Utilisez argv pour éviter de citer des valeurs qui seraient autrement interprétées de manière incorrecte (par exemple, "nom d'utilisateur").</td>
+        </tr>
+        <tr>
+            <td>chdir<br>path</td>
+            <td></td>
+            <td>Change de dossier avant exécution</td>
+        </tr>
+        <tr>
+            <td>creates<br>path</td>
+            <td></td>
+            <td>Si elle existe déjà, cette étape ne sera pas exécutée.</td>
+        </tr>
+        <tr>
+            <td>free_form<br>- / required </td>
+            <td></td>
+            <td>?</td>
+        </tr>
+        <tr>
+            <td>removes<br>path</td>
+            <td></td>
+            <td>A filename or (since 2.0) glob pattern. If it already exists, this step will be run.</td>
+        </tr>
+        <tr>
+            <td>stdin<br>-<br>added in 2.4</td>
+            <td></td>
+            <td>Définissez le stdin de la commande directement sur la valeur spécifiée.</td>
+        </tr>
+        <tr>
+            <td>stdin_add_newline<br>boolean<br>added in 2.8</td>
+            <td>Choix<br>no<br><span class="defaut">yes</span></td>
+            <td>Si la valeur est yes, ajoute une nouvelle ligne aux données stdin.</td>
+        </tr>
+        <tr>
+            <td>strip_empty_ends<br>boolean<br>added in 2.8</td>
+            <td>Choix<br>no<br><span class="defaut">yes</span></td>
+            <td>Supprimer les lignes vides de la fin de stdout / stderr dans le résultat.</td>
+        </tr>
+        <tr>
+            <td>warn<br>boolean</td>
+            <td>Choix<br>no<br><span class="defaut">yes</span></td>
+            <td>Activer ou désactiver les avertissements de tâches.</td>
+        </tr>
+    </table>
+    <br>
+    <h4>Exemples</h4>
+    <pre>- name: retourne le contenu de motd<br>  command: cat /etc/motd<br>  register: mymotd</pre>
+    <pre>- name: Run command if /path/to/database does not exist (without 'args').<br>  command: /usr/bin/make_database.sh db_user db_name creates=/path/to/database</pre>
+    <pre>- name: Run command if /path/to/database does not exist (with 'args').<br>  command: /usr/bin/make_database.sh db_user db_name<br>  args:<br>    creates: /path/to/database</pre>
+    <pre>- name: Change the working directory to somedir/ and run the command as db_owner if /path/to/database does not exist.<br>  command: /usr/bin/make_database.sh db_user db_name<br>  become: yes<br>  become_user: db_owner<br>  args:<br>    chdir: somedir/<br>    creates: /path/to/database</pre>
+    <pre>- name: Use 'argv' to send a command as a list - leave 'command' empty<br>  command:<br>    argv:<br>      - /usr/bin/make_database.sh<br>      - Username with whitespace<br>      - dbname with whitespace</pre>
+    <pre>- name: safely use templated variable to run command. Always use the quote filter to avoid injection issues.<br>  command: cat {{ myfile|quote }}<br>  register: myoutput</pre>
+</body>

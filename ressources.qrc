@@ -1,0 +1,24 @@
+<RCC>
+    <qresource prefix="/icons">
+        <file>ressources/folder-plus-solid.svg</file>
+        <file>ressources/box-open-solid.svg</file>
+        <file>ressources/box-solid.svg</file>
+        <file>ressources/file-solid.svg</file>
+        <file>ressources/folder-minus-solid.svg</file>
+        <file>ressources/plus-square-solid.svg</file>
+        <file>ressources/question-circle-solid.svg</file>
+        <file>ressources/adn-brands.svg</file>
+        <file>ressources/power-off-solid.svg</file>
+        <file>ressources/server-solid.svg</file>
+        <file>ressources/save-solid.svg</file>
+        <file>ressources/window-close-solid.svg</file>
+        <file>ressources/folder-open-solid.svg</file>
+        <file>ressources/tasks-solid.svg</file>
+    </qresource>
+    <qresource prefix="/html">
+        <file>html/command.html</file>
+    </qresource>
+    <qresource prefix="/modules">
+        <file>modules/modules.txt</file>
+    </qresource>
+</RCC>
