@@ -7,10 +7,10 @@ The home page of XAnsible, with a 'notepad' to edit files, a list of hosts avail
 Create a new playbook. But with a system of project file you can open a older project.
 ![NewPlaybook](https://raw.githubusercontent.com/wolfgit53/XAnsible/master/img/XAnsibleNewPlaybook.png)
 
-Create a new role :
+Create a new role, with the possibilities to specify the use of handlers and templates :
 ![NewRole](https://raw.githubusercontent.com/wolfgit53/XAnsible/master/img/XAnsibleNewRole.png)
 
-Insert module :
+Insert module with an helpfull documentation :
 ![NewModule](https://raw.githubusercontent.com/wolfgit53/XAnsible/master/img/XAnsibleModuleUse.png)
 
 About this project :
